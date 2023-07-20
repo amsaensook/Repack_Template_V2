@@ -5,6 +5,7 @@ import { Button, Card } from "antd";
 import { PrinterOutlined} from "@ant-design/icons";
 import QRCode from "react-qr-code";
 import "./ReceivePart.css";
+import {decode as base64_decode, encode as base64_encode} from 'base-64';
 
 const print_QR_Code = () => {
   window.print();
@@ -86,6 +87,8 @@ const QrCodePrint: React.FC<any> = (props) => {
           ];
           const codeJson = JSON.stringify(object);
           let text = '';
+          let encoded = base64_encode(codeJson);
+          const url_qr = "http://119.59.105.14/toto-warranty/service?info="+encoded;
 
           if(obj.Product_ID == 4){
             text = item.Lot_No + ' (' + item.Series + ')';
@@ -105,7 +108,7 @@ const QrCodePrint: React.FC<any> = (props) => {
                   </div>
                   <div style={{marginLeft:32}}>
                     <QRCode
-                        value={codeJson}
+                        value={url_qr}
                         size={210}
                         style={{ height: "auto", maxWidth: "100%", width: "80%" }}
                         viewBox={`0 0 256 256`}
