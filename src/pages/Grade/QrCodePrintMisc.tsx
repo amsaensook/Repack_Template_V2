@@ -58,7 +58,7 @@ for (var i = 0; i < obj.QTY; i++) {
           ];
           const CodeQR = JSON.stringify(codeNew);
           let encoded = base64_encode(CodeQR);
-          const url_qr = "http://119.59.105.14/toto-warranty/service?info="+encoded;
+          const url_qr = "https://as-spare-part.ttlsystem.com:5001/toto-warranty/service?info="+encoded;
 
           return (
             <>
